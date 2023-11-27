@@ -1,0 +1,21 @@
+#root {
+  max-height: 100vh;
+  text-align: center;
+  --primarycolor: rgb(73, 96, 166);
+  --secondarycolor: rgb(246, 175, 133);
+}
+
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: var(--primarycolor);
+  min-height: 150px;
+  max-height: 30vh;
+}
+
+#logo-header {
+  min-height: 150px;
+  max-height: calc(30vh - 50px);
+}
