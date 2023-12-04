@@ -14,9 +14,12 @@ export default function Header() {
       />
       <div className="tabs">
         <div id="tab-container">
-          <a>Home</a>
-          <a>Shop</a>
-          <a>Cart</a>
+          <a>Shop All</a>
+          <a>Men</a>
+          <a>
+            Women <img src="src/assets/arrow.svg" alt="arrow" />
+          </a>
+          <a>Electronics</a>
         </div>
       </div>
 

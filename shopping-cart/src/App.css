@@ -9,6 +9,16 @@ body {
   margin: 0;
 }
 
+a:hover {
+  font-weight: 550;
+  border-bottom: 1px solid;
+}
+
+#arrow {
+  fill: red;
+  width: 15px;
+}
+
 #header {
   display: flex;
   flex-direction: column;
@@ -16,7 +26,7 @@ body {
   justify-content: center;
   background-color: var(--primarycolor);
   min-height: 300px;
-  max-height: 45vh; /* 30vh */
+  max-height: 15vh; /* 30vh */
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -28,7 +38,7 @@ body {
   align-items: center;
   justify-content: space-evenly;
   color: var(--primarycolor);
-  font-size: 32px;
+  font-size: 28px;
   width: 600px;
 }
 
@@ -43,7 +53,7 @@ body {
 }
 
 #logo-header {
-  height: 250px;
+  height: 200px;
 }
 
 .menu {
