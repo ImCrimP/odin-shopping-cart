@@ -1,3 +1,5 @@
+import "../App.scss";
+
 export default function Header() {
   const handleItemClick = (category) => {
     // Handle the click event for the dropdown items
@@ -5,18 +7,28 @@ export default function Header() {
     // Add your logic for handling the click event, such as navigating to a new page or updating state
   };
 
+  /*
+      <ul>
+        <li>
+          <Link href=""></Link>
+        </li>
+      </ul>
+  */
   return (
     <div id="header">
-      <img
-        id="logo-header"
-        src="src/assets/Retail-Junction-logos-diamond.jpeg"
-        alt="logo"
-      />
+      <a href="/">
+        <img
+          id="logo-header"
+          src="src/assets/Retail-Junction-logos-diamond.jpeg"
+          alt="logo"
+        />
+      </a>
+
       <div className="tabs">
         <div id="tab-container">
-          <a>Shop All</a>
-          <a>Men</a>
-          <a>
+          <a href="shopAll">Shop All</a>
+          <a href="mensClothing">Men</a>
+          <a href="women">
             Women <img src="src/assets/arrow.svg" alt="arrow" />
           </a>
           <a>Electronics</a>

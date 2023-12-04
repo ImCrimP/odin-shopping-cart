@@ -1,9 +1,9 @@
 import Header from "./Header";
-export default function Jewelery() {
+export default function ShopAll() {
   return (
     <>
       <Header />
-      <h1>Jewelery</h1>
+      <h5>SHOP ALL</h5>
     </>
   );
 }
