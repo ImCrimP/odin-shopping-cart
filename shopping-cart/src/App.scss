@@ -26,12 +26,12 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: var(--primarycolor);
   min-height: 300px;
   max-height: 15vh; /* 30vh */
   margin: 0;
-  padding: 0;
+  padding: 25px 25px 0px 25px;
   overflow: hidden;
 }
 
@@ -57,6 +57,90 @@ a {
 
 #logo-header {
   height: 200px;
+}
+
+.logo-cart-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchbar-form {
+  width: 100%;
+}
+
+#searchbar {
+  width: 300px;
+  font-size: 23px;
+  border-radius: 15px;
+  padding: 4px;
+  border: 1px solid var(--primarycolor);
+  &:focus {
+    border: 1px solid white;
+  }
+}
+
+.cart-container {
+  height: 35px;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* flex-grow: 1, flex-shrink: 0, flex-basis: auto */
+  width: 200px; /* Adjust the width based on your needs */
+
+  border: 1px solid;
+  border-radius: 15px;
+  padding: 5px;
+  margin: 5px; /* Optional margin for spacing */
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
+
+.item-price {
+}
+
+.item-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+  padding: 15px;
+}
+
+.item-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 260px;
+  width: 200px;
+  object-fit: contain;
+}
+
+.women-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    .arrow-img {
+      transition: transform 0.3s ease;
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .menu {
