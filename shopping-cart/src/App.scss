@@ -142,28 +142,46 @@ a {
   position: absolute;
   z-index: 1;
 
+  .arrow-img {
+    transition: transform 0.3s ease;
+  }
+
   &:hover {
+    .arrow-img {
+      transform: rotate(180deg);
+    }
     display: flex;
+  }
+}
+.women-container {
+  height: fit-content;
+  &:hover {
     .arrow-img {
       transition: transform 0.3s ease;
       transform: rotate(180deg);
-    } // Show when either the container or its parent is hovered
+    }
+    .dropdown-container {
+      display: flex;
+    }
   }
 }
+
 .women-tab {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+
   &:hover {
     .arrow-img {
-      transition: transform 0.3s ease;
       transform: rotate(180deg);
     }
+  }
+}
 
-    .dropdown-container {
-      display: flex;
-    }
+.tab {
+  &:hover {
+    border-bottom: 1px solid var(--primarycolor);
   }
 }
 /*

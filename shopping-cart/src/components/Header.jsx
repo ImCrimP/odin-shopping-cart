@@ -156,25 +156,27 @@ export default function Header() {
             alt="logo"
           />
         </a>
-
-        <a href="">
-          <img className="cart" src={shoppingcart} alt="cart" />
-        </a>
+        <div className="cart-icon-container">
+          <a href="">
+            <img className="cart" src={shoppingcart} alt="cart" />
+          </a>
+        </div>
       </div>
 
       <div className="tabs">
         <div id="tab-container">
-          <a href="shop-all">Shop All</a>
-          <a data-section="men's clothing" href="mens-clothing">
+          <a className="tab" href="shop-all">
+            Shop All
+          </a>
+          <a className="tab" data-section="men's clothing" href="mens-clothing">
             Men
           </a>
-          <div className="women-container">
-            <a
-              href="women"
-              className="women-tab"
-              onMouseEnter={() => setWomenDropdownVisibility(true)}
-              onMouseLeave={() => setWomenDropdownVisibility(false)}
-            >
+          <div
+            className="women-container"
+            onMouseEnter={() => setWomenDropdownVisibility(true)}
+            onMouseLeave={() => setWomenDropdownVisibility(false)}
+          >
+            <a href="women" className="women-tab tab">
               Women{" "}
               <img
                 className="arrow-img"
@@ -184,16 +186,18 @@ export default function Header() {
             </a>
             {isWomenDropdownVisible && (
               <div className="dropdown-container">
-                <a className="dropdown" href="womens-clothing">
+                <a className="dropdown tab" href="womens-clothing">
                   Women's Clothing
                 </a>
-                <a className="dropdown" href="jewelry">
+                <a className="dropdown tab" href="jewelry">
                   Jewelry
                 </a>
               </div>
             )}
           </div>
-          <a href="electronics">Electronics</a>
+          <a className="tab" href="electronics">
+            Electronics
+          </a>
         </div>
       </div>
     </div>
