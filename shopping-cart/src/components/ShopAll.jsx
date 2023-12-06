@@ -29,6 +29,7 @@ export default function ShopAll() {
 
   const [storeItems, setStoreItems] = useState([
     {
+      category: "",
       imageLink: "",
       title: "",
       price: 0,
@@ -42,10 +43,11 @@ export default function ShopAll() {
       try {
         const response = await fetch("https://fakestoreapi.com/products");
         const data = await response.json();
-        //console.log(data);
+        console.log("data", data);
 
         // Map over the data and create a new array of items with the required properties
         const items = data.map((item) => ({
+          category: item.category,
           imageLink: item.image,
           title: item.title,
           price: item.price,
@@ -64,7 +66,7 @@ export default function ShopAll() {
     getItemInfo();
   }, []);
 
-  console.log(storeItems);
+  console.log("store items", storeItems);
 
   function handleClick() {
     return;
