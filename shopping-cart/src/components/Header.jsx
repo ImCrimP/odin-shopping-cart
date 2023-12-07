@@ -168,16 +168,20 @@ export default function Header() {
           <a href="">
             <img className="cart" src={shoppingcart} alt="cart" />
           </a>
-          <div id="items-cart">0</div>
+          <div id="items-cart">6</div>
         </div>
       </div>
 
       <div className="tabs">
         <div id="tab-container">
-          <a className="tab" href="shop-all">
+          <a className="main-tab tab" href="shop-all">
             Shop All
           </a>
-          <a className="tab" data-section="men's clothing" href="mens-clothing">
+          <a
+            className="main-tab tab"
+            data-section="men's clothing"
+            href="mens-clothing"
+          >
             Men
           </a>
           <div
@@ -193,18 +197,18 @@ export default function Header() {
                 alt="arrow"
               />
             </a>
-            {isWomenDropdownVisible && (
-              <div className="dropdown-container">
-                <a className="dropdown tab" href="womens-clothing">
-                  Women's Clothing
-                </a>
-                <a className="dropdown tab" href="jewelry">
-                  Jewelry
-                </a>
-              </div>
-            )}
+            {/*} {isWomenDropdownVisible && (*/}
+            <div className="dropdown-container">
+              <a className="dropdown tab" href="womens-clothing">
+                Women's Clothing
+              </a>
+              <a className="dropdown tab" href="jewelry">
+                Jewelry
+              </a>
+            </div>
+            {/*)}*/}
           </div>
-          <a className="tab" href="electronics">
+          <a className="tab main-tab" href="electronics">
             Electronics
           </a>
         </div>

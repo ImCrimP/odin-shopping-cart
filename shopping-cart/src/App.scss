@@ -1,9 +1,9 @@
 #root {
   max-height: 100vh;
   text-align: center;
-  --primarycolor: gray; /*rgb(73, 96, 166);*/
-  --secondarycolor: darkgray; /*rgb(246, 175, 133);*/
-  --tempcolor: lightgray;
+  --primarycolor: white; /*rgb(73, 96, 166);*/
+  --secondarycolor: lightgray; /*rgb(246, 175, 133);*/
+  --textcolor: black;
 }
 
 body {
@@ -11,7 +11,7 @@ body {
 }
 
 a {
-  color: var(--primarycolor);
+  color: var(--textcolor);
   text-decoration: none;
   &:hover {
     cursor: pointer;
@@ -19,7 +19,6 @@ a {
 }
 
 #arrow {
-  fill: gray;
   width: 15px;
 }
 
@@ -29,7 +28,7 @@ a {
   align-items: center;
   justify-content: space-between;
   background-color: var(--secondarycolor);
-  min-height: 300px;
+  min-height: 150px;
   max-height: 15vh; /* 30vh */
   margin: 0;
   padding: 50px 0px 0px 0px;
@@ -57,7 +56,7 @@ a {
 }
 
 #logo-header {
-  height: 200px;
+  height: 100px;
 }
 
 .logo-cart-container {
@@ -96,9 +95,8 @@ a {
 
   padding: 4px;
   border: none;
-  border-right: 1px solid var(--primarycolor);
   &:focus {
-    border: 1px solid white;
+    outline: none;
   }
 }
 
@@ -114,7 +112,8 @@ a {
   background-color: white;
   border-radius: 5px;
   align-items: center;
-  border: 1px solid var(--primarycolor);
+  border: 1px solid black;
+  padding: 2px;
 }
 
 .cart-container {
@@ -184,37 +183,34 @@ a {
 }
 
 .dropdown {
-  color: var(--secondarycolor);
-  background-color: var(--primarycolor);
+  color: var(--textcolor);
+  background-color: var(--secondarycolor);
+}
+.arrow-img {
+  transition: transform 0.4s ease;
 }
 
 .dropdown-container {
   display: flex;
   flex-direction: column;
+  visibility: hidden;
   position: absolute;
   z-index: 1;
-
-  .arrow-img {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover {
-    .arrow-img {
-      transform: rotate(180deg);
-    }
-    display: flex;
-  }
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out,
+    visibility 0.4s ease-in-out;
+  opacity: 0;
 }
 .women-container {
   height: fit-content;
-  &:hover {
-    .arrow-img {
-      transition: transform 0.3s ease;
-      transform: rotate(180deg);
-    }
-    .dropdown-container {
-      display: flex;
-    }
+
+  &:hover .dropdown-container {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  &:hover .arrow-img {
+    transform: rotate(180deg);
   }
 }
 
@@ -223,17 +219,11 @@ a {
   justify-content: center;
   align-items: center;
   position: relative;
-
-  &:hover {
-    .arrow-img {
-      transform: rotate(180deg);
-    }
-  }
 }
 
-.tab {
+.main-tab {
   &:hover {
-    border-bottom: 1px solid var(--primarycolor);
+    border-bottom: 1px solid var(--textcolor);
   }
 }
 /*
