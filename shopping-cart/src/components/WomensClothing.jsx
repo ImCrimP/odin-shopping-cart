@@ -3,7 +3,7 @@ export default function WomensClothing() {
   return (
     <>
       <Header />
-      <h1>Jewelery</h1>
+      <h1>Women's Clothing</h1>
     </>
   );
 }

@@ -199,10 +199,10 @@ export default function Header() {
             </a>
             {/*} {isWomenDropdownVisible && (*/}
             <div className="dropdown-container">
-              <a className="dropdown tab" href="womens-clothing">
+              <a className="dropdown tab" href="women/womens-clothing">
                 Women's Clothing
               </a>
-              <a className="dropdown tab" href="jewelry">
+              <a className="dropdown tab" href="women/jewelry">
                 Jewelry
               </a>
             </div>
