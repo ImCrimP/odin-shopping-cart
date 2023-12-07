@@ -1,8 +1,9 @@
 #root {
   max-height: 100vh;
   text-align: center;
-  --primarycolor: rgb(73, 96, 166);
-  --secondarycolor: rgb(246, 175, 133);
+  --primarycolor: gray; /*rgb(73, 96, 166);*/
+  --secondarycolor: darkgray; /*rgb(246, 175, 133);*/
+  --tempcolor: lightgray;
 }
 
 body {
@@ -18,7 +19,7 @@ a {
 }
 
 #arrow {
-  fill: red;
+  fill: gray;
   width: 15px;
 }
 
@@ -27,11 +28,11 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--primarycolor);
+  background-color: var(--secondarycolor);
   min-height: 300px;
   max-height: 15vh; /* 30vh */
   margin: 0;
-  padding: 25px 25px 0px 25px;
+  padding: 50px 0px 0px 0px;
   overflow: hidden;
 }
 
@@ -62,26 +63,77 @@ a {
 .logo-cart-container {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Adjusted to space-between */
+  align-items: center;
+  background-color: var(--primarycolor);
+}
+
+.logo-cart-container > .logo-header-contianer {
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.logo-cart-container > .cart-icon-container {
+  justify-content: flex-end;
+}
+
+.cart-icon-container {
+  width: 185px;
+  text-align: right;
+  padding-right: 40px;
+  position: relative; /* Ensure the parent has position: relative */
+  display: inline-block;
 }
 
 .searchbar-form {
   width: 100%;
+  text-align: center;
 }
 
 #searchbar {
   width: 300px;
   font-size: 23px;
-  border-radius: 15px;
+
   padding: 4px;
-  border: 1px solid var(--primarycolor);
+  border: none;
+  border-right: 1px solid var(--primarycolor);
   &:focus {
     border: 1px solid white;
   }
 }
 
+#search-icon {
+  background-color: white;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#search-container {
+  display: flex;
+  background-color: white;
+  border-radius: 5px;
+  align-items: center;
+  border: 1px solid var(--primarycolor);
+}
+
 .cart-container {
   height: 35px;
+}
+
+#items-cart {
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--secondarycolor);
+  width: 23px;
+  height: 23px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+  bottom: 0;
+  right: 0;
+  transform: translate(-35px);
 }
 
 .item-container {

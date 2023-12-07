@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "../App.scss";
 import shoppingcart from "../assets/shoppingcart.svg";
 import search from "../assets/search.svg";
+import logo from "../assets/Retail-Junction-logos_black.png";
 
 export default function Header() {
   /*
@@ -140,26 +141,34 @@ export default function Header() {
   const [isWomenDropdownVisible, setWomenDropdownVisibility] = useState(false);
   return (
     <div id="header">
-      <form className="searchbard-form" action="input">
-        <input
-          type="text"
-          name="search"
-          id="searchbar"
-          placeholder={`Search`}
-        />
-      </form>
       <div className="logo-cart-container">
         <a className="logo-header-contianer" href="/">
-          <img
-            id="logo-header"
-            src="src/assets/Retail-Junction-logos-diamond.jpeg"
-            alt="logo"
-          />
+          <img id="logo-header" src={logo} alt="logo" />
         </a>
+
+        <div id="search-container">
+          <form className="searchbard-form" action="input">
+            <input
+              type="text"
+              name="search"
+              id="searchbar"
+              placeholder={`Search`}
+            />
+          </form>
+
+          <img
+            id="search-icon"
+            src={search}
+            alt="search"
+            style={{ height: "100%" }}
+          />
+        </div>
+
         <div className="cart-icon-container">
           <a href="">
             <img className="cart" src={shoppingcart} alt="cart" />
           </a>
+          <div id="items-cart">0</div>
         </div>
       </div>
 
