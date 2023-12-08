@@ -1,143 +1,25 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../App.scss";
 import shoppingcart from "../assets/shoppingcart.svg";
 import search from "../assets/search.svg";
 import logo from "../assets/Retail-Junction-logos_black.png";
 
 export default function Header() {
-  /*
-  const [page, setPage] = useState("");
-  const [storeItems, setStoreItems] = useState([
-    {
-      category: "",
-      imageLink: "",
-      title: "",
-      price: 0,
-      rating: 0,
-      count: 0,
-      description: "",
-    },
-  ]);
+  const location = useLocation();
 
-  const [filteredItems, setFilteredItems] = useState([]);
-
-  const [pageItems, setPageItems] = useState([
-    {
-      category: "",
-      imageLink: "",
-      title: "",
-      price: 0,
-      rating: 0,
-      count: 0,
-      description: "",
-    },
-  ]);
-
-  const filterByTab = (tab) => {
-    // If tab is not provided, reset to all items
-    if (!tab) {
-      setFilteredItems(storeItems);
-    } else {
-      // Use filter to select only items with the target category
-      const filteredItems = storeItems.filter((item) => item.category === tab);
-      setFilteredItems(filteredItems);
-    }
-    console.log("filtered", filteredItems);
+  const isActive = (path) => {
+    // Check if the current location matches the given path
+    return location.pathname === path;
   };
 
-  useEffect(() => {
-    async function getItemInfo() {
-      try {
-        const response = await fetch("https://fakestoreapi.com/products");
-        const data = await response.json();
-        console.log("data", data);
+  const renderLink = (to, label) => (
+    <Link to={to} className={`main-tab tab ${isActive(to) ? "active" : ""}`}>
+      {label}
+    </Link>
+  );
 
-        // Map over the data and create a new array of items with the required properties
-        const items = data.map((item) => ({
-          category: item.category,
-          imageLink: item.image,
-          title: item.title,
-          price: item.price,
-          rating: item.rating.rate,
-          count: item.rating.count,
-          description: item.description,
-        }));
-
-        // Update the state with the new items array
-        setStoreItems(items);
-        setFilteredItems(items);
-        //console.log(storeItems);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    getItemInfo();
-  }, []);
-*/
-  /*function filterByTab(tab) {
-    for (let i = 0; i < storeItems.length; i++) {
-      if (storeItems[i].category == tab) {
-        setPageItems(storeItems[i]);
-      }
-    }
-  }
-
-  const handleItemClick = (category) => {
-    // Handle the click event for the dropdown items
-    console.log(`Clicked on ${category}`);
-    // Add your logic for handling the click event, such as navigating to a new page or updating state
-  };
-*/
-  /*
-      <ul>
-        <li>
-          <Link href=""></Link>
-        </li>
-      </ul>
-
-
-
-
-
-      <ul className="menu">
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li className="dropdown">
-          <a href="#" className="dropbtn">
-            Men
-          </a>
-          <div className="dropdown-content">
-            <a href="#" onClick={() => handleItemClick("Men Clothes")}>
-              Clothes
-            </a>
-            <a href="#" onClick={() => handleItemClick("Men Accessories")}>
-              Accessories
-            </a>
-            {/* Add more categories as needed }
-            </div>
-            </li>
-            <li className="dropdown">
-              <a href="#" className="dropbtn">
-                Women
-              </a>
-              <div className="dropdown-content">
-                <a href="#" onClick={() => handleItemClick("Women Clothes")}>
-                  Clothes
-                </a>
-                <a href="#" onClick={() => handleItemClick("Women Accessories")}>
-                  Accessories
-                </a>
-                {/* Add more categories as needed }
-              </div>
-            </li>
-            {/* Add more top-level menu items as needed }
-          </ul>
-          
-
-
-           onClick={() => filterByTab("men's clothing")}
-  */
+  //Make div containers that can handle onClick events ?
   const [isWomenDropdownVisible, setWomenDropdownVisibility] = useState(false);
   return (
     <div id="header">
@@ -174,7 +56,9 @@ export default function Header() {
 
       <div className="tabs">
         <div id="tab-container">
-          <a className="main-tab tab" href="shop-all">
+          {renderLink("/shop-all", "Shop All", "Explore all products")}
+          {renderLink("/mens-clothing", "Men", "Explore all products")}
+          {/*<a className="main-tab tab" href="shop-all">
             Shop All
           </a>
           <a
@@ -183,7 +67,7 @@ export default function Header() {
             href="mens-clothing"
           >
             Men
-          </a>
+          </a>*/}
           <div
             className="women-container"
             onMouseEnter={() => setWomenDropdownVisibility(true)}
@@ -199,16 +83,16 @@ export default function Header() {
             </a>
             {/*} {isWomenDropdownVisible && (*/}
             <div className="dropdown-container">
-              <a className="dropdown tab" href="women/womens-clothing">
+              <a className="dropdown tab" href="/womens-clothing">
                 Women's Clothing
               </a>
-              <a className="dropdown tab" href="women/jewelry">
+              <a className="dropdown tab" href="/jewelry">
                 Jewelry
               </a>
             </div>
             {/*)}*/}
           </div>
-          <a className="tab main-tab" href="electronics">
+          <a className="tab main-tab" href="/electronics">
             Electronics
           </a>
         </div>
