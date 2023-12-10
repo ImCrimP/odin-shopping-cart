@@ -4,6 +4,7 @@ import "../App.scss";
 import shoppingcart from "../assets/shoppingcart.svg";
 import search from "../assets/search.svg";
 import logo from "../assets/Retail-Junction-logos_black.png";
+import arrowImg from "../assets/arrow.svg";
 
 export default function Header() {
   const location = useLocation();
@@ -59,7 +60,7 @@ export default function Header() {
           {renderLink("/shop-all", "Shop All", "Explore all products")}
           {renderLink("/mens-clothing", "Men", "Explore all products")}
           {/*<a className="main-tab tab" href="shop-all">
-            Shop All
+            Shop Allv
           </a>
           <a
             className="main-tab tab"
@@ -73,6 +74,12 @@ export default function Header() {
             onMouseEnter={() => setWomenDropdownVisibility(true)}
             onMouseLeave={() => setWomenDropdownVisibility(false)}
           >
+            <div>
+              {renderLink("/women", "Women")}
+              <img className="arrow-img" src={arrowImg} alt="arrow" />
+            </div>
+
+            {/*
             <a href="women" className="women-tab tab">
               Women{" "}
               <img
@@ -81,14 +88,19 @@ export default function Header() {
                 alt="arrow"
               />
             </a>
+        */}
             {/*} {isWomenDropdownVisible && (*/}
             <div className="dropdown-container">
+              {renderLink("/women/womens-clothing", "Women")}
+              {renderLink("/women/jewelery", "Jewelery")}
+
+              {/*
               <a className="dropdown tab" href="/womens-clothing">
                 Women's Clothing
               </a>
-              <a className="dropdown tab" href="/jewelry">
+              <a className="dropdown tab" href="/jewelery">
                 Jewelry
-              </a>
+      </a>*/}
             </div>
             {/*)}*/}
           </div>
