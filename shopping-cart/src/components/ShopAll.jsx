@@ -74,23 +74,24 @@ export default function ShopAll() {
 
   return (
     <>
-      <Header />
       <h1>All Items</h1>
-      <div className="item-container">
-        {storeItems.map((item, index) => (
-          <div className="item" key={index} onClick={() => handleClick}>
-            <div className="item-image-container">
-              <img
-                className="item-image"
-                src={item.imageLink}
-                alt={item.title}
-              />
-            </div>
+      <div className="grid-container">
+        <div className="item-container">
+          {storeItems.map((item, index) => (
+            <div className="item" key={index} onClick={() => handleClick}>
+              <div className="item-image-container">
+                <img
+                  className="item-image"
+                  src={item.imageLink}
+                  alt={item.title}
+                />
+              </div>
 
-            <h4 className="item-title">{item.title}</h4>
-            <h5 className="item-price">${item.price}</h5>
-          </div>
-        ))}
+              <h4 className="item-title">{item.title}</h4>
+              <h5 className="item-price">${item.price}</h5>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

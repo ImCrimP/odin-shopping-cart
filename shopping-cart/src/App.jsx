@@ -21,7 +21,6 @@ function App() {
   return (
     <>
       <Header />
-      <Home />
     </>
   );
 }

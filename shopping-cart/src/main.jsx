@@ -9,12 +9,51 @@ import Jewelery from "./components/Jewelery.jsx";
 import Electronics from "./components/Electronics.jsx";
 import "./index.css";
 import MensClothing from "./components/MensClothing.jsx";
+import Home from "./components/Home.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/shop-all",
+        element: <ShopAll />,
+      },
+      {
+        path: "/mens-clothing",
+        element: <MensClothing />,
+      },
+      {
+        path: "/women",
+        element: <WomenAll />,
+      },
+
+      {
+        path: "women/womens-clothing",
+        element: <WomensClothing />,
+      },
+
+      {
+        path: "/women/jewelery",
+        element: <Jewelery />,
+      },
+      {
+        path: "/electronics",
+        element: <Electronics />,
+      },
+    ],
   },
+  /*
+  {
+    path: "/",
+    element: <App />,
+  },
+  
   {
     path: "/shop-all",
     element: <ShopAll />,
@@ -41,6 +80,7 @@ const router = createBrowserRouter([
     path: "/electronics",
     element: <Electronics />,
   },
+  */
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
