@@ -74,7 +74,7 @@ export default function Header() {
             onMouseEnter={() => setWomenDropdownVisibility(true)}
             onMouseLeave={() => setWomenDropdownVisibility(false)}
           >
-            <div>
+            <div id="women-tab">
               {renderLink("/women", "Women")}
               <img className="arrow-img" src={arrowImg} alt="arrow" />
             </div>
@@ -94,13 +94,12 @@ export default function Header() {
               {renderLink("/women/womens-clothing", "Women")}
               {renderLink("/women/jewelery", "Jewelery")}
 
-              {/*
-              <a className="dropdown tab" href="/womens-clothing">
+              {/*<a className="dropdown tab" href="/women/womens-clothing">
                 Women's Clothing
               </a>
               <a className="dropdown tab" href="/jewelery">
                 Jewelry
-      </a>*/}
+              </a>/*]*/}
             </div>
             {/*)}*/}
           </div>

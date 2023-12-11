@@ -5,6 +5,7 @@ export default function WomenAll() {
     <>
       <Header />
       <h1>All Women Items</h1>
+      {/*<Outlet />*/}
     </>
   );
 }

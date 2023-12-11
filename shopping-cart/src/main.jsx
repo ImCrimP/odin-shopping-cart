@@ -24,15 +24,21 @@ const router = createBrowserRouter([
     element: <MensClothing />,
   },
   {
-    path: "women",
+    path: "/women",
     element: <WomenAll />,
-    children: [
-      { path: "womens-clothing", element: <WomensClothing /> },
-      { path: "jewelery", element: <Jewelery /> },
-    ],
+  },
+
+  {
+    path: "women/womens-clothing",
+    element: <WomensClothing />,
+  },
+
+  {
+    path: "/women/jewelery",
+    element: <Jewelery />,
   },
   {
-    path: "electronics",
+    path: "/electronics",
     element: <Electronics />,
   },
 ]);
