@@ -1,6 +1,7 @@
 import Header from "./Header";
 import { useState, useEffect } from "react";
 import "../App.scss";
+import GetData from "./GetData";
 export default function ShopAll() {
   /*
   let storeItems = useState[{
@@ -25,7 +26,7 @@ export default function ShopAll() {
       console.log(error);
     }
   }
-  */
+  
 
   const [storeItems, setStoreItems] = useState([
     {
@@ -71,28 +72,18 @@ export default function ShopAll() {
   function handleClick() {
     return;
   }
+  */
 
+  const categories = [
+    "men's clothing",
+    "women's clothing",
+    "jewelery",
+    "electronics",
+  ];
   return (
     <>
       <h1>All Items</h1>
-      <div className="grid-container">
-        <div className="item-container">
-          {storeItems.map((item, index) => (
-            <div className="item" key={index} onClick={() => handleClick}>
-              <div className="item-image-container">
-                <img
-                  className="item-image"
-                  src={item.imageLink}
-                  alt={item.title}
-                />
-              </div>
-
-              <h4 className="item-title">{item.title}</h4>
-              <h5 className="item-price">${item.price}</h5>
-            </div>
-          ))}
-        </div>
-      </div>
+      <GetData categories={categories} />
     </>
   );
 }
