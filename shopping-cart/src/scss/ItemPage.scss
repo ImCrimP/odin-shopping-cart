@@ -1,9 +1,16 @@
 .item-page-container {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+
+  padding: 20px;
 }
 
 .item-text-container {
-  width: 60%;
+  width: 45%;
+}
+
+.item-image-page {
+  width: 300px;
+  height: 390px;
+  object-fit: contain;
 }

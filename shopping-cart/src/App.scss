@@ -165,6 +165,10 @@ a {
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
+
+    .item-title {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -236,9 +240,6 @@ a {
   }
 }
 
-.item-image-page {
-  width: 250px;
-}
 /*
 .menu {
   list-style-type: none;
