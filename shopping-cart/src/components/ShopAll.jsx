@@ -23,7 +23,7 @@ export default function ShopAll() {
           }
         });
     } catch (error) {
-      console.log(error);
+      consolae.log(error);
     }
   }
   

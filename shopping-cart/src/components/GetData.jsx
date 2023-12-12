@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Custom hook for fetching data
 const useDataFetching = (apiEndpoints) => {
@@ -90,12 +91,18 @@ const GetData = ({ categories }) => {
         <div className="item-container">
           {data.map((item) => (
             <div className="item" key={item.id}>
-              <div className="item-image-container">
-                <img className="item-image" src={item.image} alt={item.title} />
-              </div>
+              <Link to={`/shop/${encodeURIComponent(item.title)}`}>
+                <div className="item-image-container">
+                  <img
+                    className="item-image"
+                    src={item.image}
+                    alt={item.title}
+                  />
+                </div>
 
-              <h4 className="item-title">{item.title}</h4>
-              <h5 className="item-price">${item.price}</h5>
+                <h4 className="item-title">{item.title}</h4>
+                <h5 className="item-price">${item.price}</h5>
+              </Link>
             </div>
           ))}
         </div>

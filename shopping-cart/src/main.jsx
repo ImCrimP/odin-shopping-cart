@@ -10,6 +10,7 @@ import Electronics from "./components/Electronics.jsx";
 import "./index.css";
 import MensClothing from "./components/MensClothing.jsx";
 import Home from "./components/Home.jsx";
+import ItemPage from "./components/ItemPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -46,41 +47,12 @@ const router = createBrowserRouter([
         path: "/electronics",
         element: <Electronics />,
       },
+      {
+        path: "/shop/:itemTitle",
+        element: <ItemPage />,
+      },
     ],
   },
-  /*
-  {
-    path: "/",
-    element: <App />,
-  },
-  
-  {
-    path: "/shop-all",
-    element: <ShopAll />,
-  },
-  {
-    path: "/mens-clothing",
-    element: <MensClothing />,
-  },
-  {
-    path: "/women",
-    element: <WomenAll />,
-  },
-
-  {
-    path: "women/womens-clothing",
-    element: <WomensClothing />,
-  },
-
-  {
-    path: "/women/jewelery",
-    element: <Jewelery />,
-  },
-  {
-    path: "/electronics",
-    element: <Electronics />,
-  },
-  */
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
