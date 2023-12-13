@@ -10,6 +10,10 @@ body {
   margin: 0;
 }
 
+.hide {
+  display: none;
+}
+
 a {
   color: var(--textcolor);
   text-decoration: none;
@@ -120,7 +124,7 @@ a {
   height: 35px;
 }
 
-#items-cart {
+.items-cart {
   position: absolute;
   border-radius: 50%;
   background-color: var(--secondarycolor);

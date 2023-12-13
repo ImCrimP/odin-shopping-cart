@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.scss";
-import Header from "./components/Header";
+import Header from "/src/components/Header";
 
 function App() {
   async function getItemImg() {

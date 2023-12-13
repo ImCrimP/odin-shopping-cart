@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "/src/scss/ItemPage.scss";
+import { CartContext } from "./Header";
 
 const ItemPage = () => {
   const { itemTitle } = useParams();
   console.log("itemTitle:", itemTitle);
+  const { addItemToCart } = React.useContext(CartContext);
 
   const [item, setItem] = useState(null);
 
@@ -29,6 +31,8 @@ const ItemPage = () => {
     fetchItemDetails();
   }, [itemTitle]);
 
+  //function addToCart(item) {}
+
   if (!item) {
     return <p>Loading...</p>;
   }
@@ -38,7 +42,7 @@ const ItemPage = () => {
       <img className="item-image-page" src={item.image} alt={item.title} />
       <div className="item-text-container">
         <h2 className="item-title">{item.title}</h2>
-        <button>Add to Cart</button>
+        <button onClick={() => addItemToCart(item)}>Add to Cart</button>
         <p>About this item:</p>
         <p className="item-description">{item.description}</p>
       </div>
