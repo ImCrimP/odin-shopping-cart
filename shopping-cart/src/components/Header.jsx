@@ -18,7 +18,11 @@ export default function Header() {
 
   useEffect(() => {
     getTotalCost();
-  }, [itemsInCart, quantity]);
+    getNumItemsInCart();
+    if (itemsInCart.length === 0) {
+      setTotalCost(0);
+    }
+  }, [itemsInCart, quantity, totalCost]);
 
   function increaseQuantity(index) {
     const newQuantity = quantity[index] + 1;
@@ -29,7 +33,13 @@ export default function Header() {
     ]);
   }
 
-  function removeItem() {}
+  function removeItem(index) {
+    setItemsInCart([
+      ...itemsInCart.slice(0, index),
+      ...itemsInCart.slice(index + 1),
+    ]);
+    setQuantity([...quantity.slice(0, index), ...quantity.slice(index + 1)]);
+  }
 
   function decreaseQuantity(index) {
     if (quantity[index] > 1) {
@@ -40,6 +50,17 @@ export default function Header() {
         ...quantity.slice(index + 1),
       ]);
     }
+  }
+
+  function getNumItemsInCart() {
+    let total = 0;
+    if (itemsInCart.length === 0) {
+      return 0;
+    }
+    for (let i = 0; i < itemsInCart.length; i++) {
+      total += quantity[i];
+    }
+    setNumItemsInCart(total);
   }
 
   function addItemToCart(item) {
