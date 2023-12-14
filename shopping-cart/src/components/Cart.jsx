@@ -1,20 +1,45 @@
 import React from "react";
 import { CartContext } from "./Header";
+import "/src/scss/Cart.scss";
 export default function Cart() {
-  const { itemsInCart } = React.useContext(CartContext);
+  const {
+    itemsInCart,
+    quantity,
+    totalCost,
+    increaseQuantity,
+    decreaseQuantity,
+    removeItem,
+  } = React.useContext(CartContext);
 
   console.log(itemsInCart.length);
   console.log("itmes in cart", itemsInCart);
   return (
     <div className="cart-container">
       <h2>Cart</h2>
-      <ul>
+      <div className="cart-items">
         {itemsInCart.map((item, index) => (
-          <div key={index}>
-            {item.title} - {item.price}
+          <div className="item-container" key={index}>
+            <div className="img-container">
+              <img
+                className="item-image-cart"
+                src={item.image}
+                alt={item.title}
+              />
+            </div>
+            <p className="item-title">{item.title}</p>
+            <p>${item.price}</p>
+            <div className="button-container">
+              <div className="quantity-container">
+                <button onClick={() => decreaseQuantity(index)}>-</button>
+                <p>{quantity[index]}</p>
+                <button onClick={() => increaseQuantity(index)}>+</button>
+              </div>
+              <button onClick={() => removeItem(index)}>Remove</button>
+            </div>
           </div>
         ))}
-      </ul>
+        <p>Total Cost: ${totalCost}</p>
+      </div>
     </div>
   );
 }

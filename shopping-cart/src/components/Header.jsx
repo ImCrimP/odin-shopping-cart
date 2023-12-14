@@ -12,10 +12,68 @@ export const CartContext = React.createContext();
 export default function Header() {
   const location = useLocation();
   const [itemsInCart, setItemsInCart] = useState([]);
+  const [numItemsInCart, setNumItemsInCart] = useState(0);
+  const [quantity, setQuantity] = useState([]);
+  const [totalCost, setTotalCost] = useState(0);
+
+  useEffect(() => {
+    getTotalCost();
+  }, [itemsInCart, quantity]);
+
+  function increaseQuantity(index) {
+    const newQuantity = quantity[index] + 1;
+    setQuantity([
+      ...quantity.slice(0, index),
+      newQuantity,
+      ...quantity.slice(index + 1),
+    ]);
+  }
+
+  function removeItem() {}
+
+  function decreaseQuantity(index) {
+    if (quantity[index] > 1) {
+      const newQuantity = quantity[index] - 1;
+      setQuantity([
+        ...quantity.slice(0, index),
+        newQuantity,
+        ...quantity.slice(index + 1),
+      ]);
+    }
+  }
 
   function addItemToCart(item) {
-    setItemsInCart([...itemsInCart, item]);
+    if (itemsInCart.includes(item)) {
+      const index = itemsInCart.indexOf(item);
+      const newQuantity = quantity[index] + 1;
+      setQuantity([
+        ...quantity.slice(0, index),
+        newQuantity,
+        ...quantity.slice(index + 1),
+      ]);
+    } else {
+      setItemsInCart([...itemsInCart, item]);
+      setQuantity([...quantity, 1]);
+    }
+
+    setNumItemsInCart(numItemsInCart + 1);
+    console.log("quantity:", quantity);
+    console.log("num items:", numItemsInCart);
     console.log("itemsInCart:", itemsInCart);
+  }
+
+  function getTotalCost() {
+    let total = 0;
+    if (itemsInCart.length === 0) {
+      return 0;
+    }
+    for (let i = 0; i < itemsInCart.length; i++) {
+      total += itemsInCart[i].price * quantity[i];
+      console.log(`total after ${i} items: ${total}`);
+    }
+
+    console.log("total:", total);
+    setTotalCost(total);
   }
 
   const isActive = (path) => {
@@ -23,8 +81,12 @@ export default function Header() {
     return location.pathname === path;
   };
 
-  const renderLink = (to, label) => (
-    <Link to={to} className={`main-tab tab ${isActive(to) ? "active" : ""}`}>
+  const renderLink = (to, label, id) => (
+    <Link
+      to={to}
+      id={id}
+      className={`main-tab tab ${isActive(to) ? "active" : ""}`}
+    >
       {label}
     </Link>
   );
@@ -32,12 +94,27 @@ export default function Header() {
   //Make div containers that can handle onClick events ?
   const [isWomenDropdownVisible, setWomenDropdownVisibility] = useState(false);
   return (
-    <CartContext.Provider value={{ addItemToCart, itemsInCart }}>
+    <CartContext.Provider
+      value={{
+        addItemToCart,
+        increaseQuantity,
+        decreaseQuantity,
+        removeItem,
+        totalCost,
+        itemsInCart,
+        quantity,
+        numItemsInCart,
+      }}
+    >
       <>
         <div id="header">
           <div className="logo-cart-container">
             <div className="logo-header-contianer">
-              {renderLink("/", <img id="logo-header" src={logo} alt="logo" />)}
+              {renderLink(
+                "/",
+                <img id="logo-header" src={logo} alt="logo" />,
+                "home"
+              )}
             </div>
 
             <div id="search-container">
@@ -60,13 +137,14 @@ export default function Header() {
             <div className="cart-icon-container">
               {renderLink(
                 "/cart",
-                <img className="cart" src={shoppingcart} alt="cart" />
+                <img className="cart" src={shoppingcart} alt="cart" />,
+                "cart"
               )}
 
               <div
                 className={`${itemsInCart.length > 0 ? "items-cart" : "hide"}`}
               >
-                {itemsInCart.length}
+                {numItemsInCart}
                 {/*{itemsInCart.map((item, index) => (
                   <div key={index}>
                     
@@ -114,7 +192,7 @@ export default function Header() {
         */}
                 {/*} {isWomenDropdownVisible && (*/}
                 <div className="dropdown-container">
-                  {renderLink("/women/womens-clothing", "Women")}
+                  {renderLink("/women/womens-clothing", "Women Clothing")}
                   {renderLink("/women/jewelery", "Jewelery")}
 
                   {/*<a className="dropdown tab" href="/women/womens-clothing">
@@ -126,9 +204,7 @@ export default function Header() {
                 </div>
                 {/*)}*/}
               </div>
-              <a className="tab main-tab" href="/electronics">
-                Electronics
-              </a>
+              {renderLink("/electronics", "Electronics")}
             </div>
           </div>
         </div>

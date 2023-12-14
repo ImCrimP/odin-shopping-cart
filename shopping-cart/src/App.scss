@@ -244,6 +244,12 @@ a {
   }
 }
 
+#cart {
+  &:hover {
+    border-bottom: none;
+  }
+}
+
 /*
 .menu {
   list-style-type: none;
