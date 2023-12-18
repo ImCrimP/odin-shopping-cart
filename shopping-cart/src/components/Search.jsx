@@ -63,9 +63,17 @@ export default function Search() {
       {searchQuery && suggestions.length > 0 && (
         <ul className="autocomplete-list">
           {suggestions.map((item) => (
-            <li key={item.id} onClick={() => setSearchQuery("")}>
-              <Link to={`/shop/${encodeURIComponent(item.title)}`}>
-                {item.title}
+            <li
+              key={item.id}
+              onClick={() => setSearchQuery("")}
+              className="list-item"
+            >
+              <Link
+                className="list-item-link"
+                to={`/shop/${encodeURIComponent(item.title)}`}
+              >
+                <img className="search-img" src={item.image} alt={item.title} />
+                <p className="list-item-text">{item.title}</p>
               </Link>
             </li>
           ))}

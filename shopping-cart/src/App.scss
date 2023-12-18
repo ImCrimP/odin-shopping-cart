@@ -154,6 +154,25 @@ a {
   }
 }
 
+.list-item-link > .search-img {
+  width: 20%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.list-item-link {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.list-item-text {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+}
+
 .cart-container {
   height: 35px;
 }
