@@ -12,6 +12,7 @@ import MensClothing from "./components/MensClothing.jsx";
 import Home from "./components/Home.jsx";
 import ItemPage from "./components/ItemPage.jsx";
 import Cart from "./components/Cart.jsx";
+import Search from "./components/Search.jsx";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/search/:searchQuery",
+        element: <Search />,
       },
     ],
   },

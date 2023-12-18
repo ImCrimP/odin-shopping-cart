@@ -13,6 +13,9 @@ export default function Cart() {
 
   console.log(itemsInCart.length);
   console.log("itmes in cart", itemsInCart);
+  if (itemsInCart.length === 0) {
+    return <h1>Your cart is empty</h1>;
+  }
   return (
     <div className="cart-container">
       <h2>Cart</h2>

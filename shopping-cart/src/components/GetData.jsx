@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // Custom hook for fetching data
 const useDataFetching = (apiEndpoints) => {
@@ -46,35 +47,28 @@ const useDataFetching = (apiEndpoints) => {
   return { data, loading, error };
 };
 
-/*
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(apiEndpoint);
-        const jsonData = await response.json();
-        console.log("JSON Data", jsonData);
-        setData(jsonData);
-        console.log("fetch Data", data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+const calculateRelevance = (item, query) => {
+  const title = item.title.toLowerCase();
 
-    fetchData();
-  }, [apiEndpoint]);
-
-  return { data, loading, error };
+  // If the title starts with the query, give it higher relevance
+  if (title.startsWith(query)) {
+    return 2;
+  }
+  // If the title contains the query anywhere, give it medium relevance
+  else if (title.includes(query)) {
+    return 1;
+  } else {
+    // Otherwise, give it lower relevance
+    return 0;
+  }
 };
-*/
-// Example component using the custom hook
-const GetData = ({ categories }) => {
-  console.log("categories", categories);
-  const apiEndpoints = categories.map(
-    (category) => `https://fakestoreapi.com/products/category/${category}`
+
+const GetData = ({ categories, searchQuery }) => {
+  const { data, loading, error } = useDataFetching(
+    categories.map(
+      (category) => `https://fakestoreapi.com/products/category/${category}`
+    )
   );
-  const { data, loading, error } = useDataFetching(apiEndpoints);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -88,7 +82,7 @@ const GetData = ({ categories }) => {
   return (
     <div>
       <div className="grid-container">
-        <div className="item-container">
+        <div className="items-container">
           {data.map((item) => (
             <div className="item" key={item.id}>
               <Link to={`/shop/${encodeURIComponent(item.title)}`}>

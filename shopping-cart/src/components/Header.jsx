@@ -2,19 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../App.scss";
 import shoppingcart from "../assets/shoppingcart.svg";
-import search from "../assets/search.svg";
+
 import logo from "../assets/Retail-Junction-logos_black.png";
 import arrowImg from "../assets/arrow.svg";
 import { Outlet } from "react-router-dom";
+import Search from "./Search";
 
 export const CartContext = React.createContext();
 
 export default function Header() {
   const location = useLocation();
+  const [items, setItems] = useState([]);
   const [itemsInCart, setItemsInCart] = useState([]);
   const [numItemsInCart, setNumItemsInCart] = useState(0);
   const [quantity, setQuantity] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     getTotalCost();
@@ -23,6 +26,36 @@ export default function Header() {
       setTotalCost(0);
     }
   }, [itemsInCart, quantity, totalCost]);
+
+  useEffect(() => {
+    console.log("searchQuery", searchQuery);
+  }, [searchQuery]);
+
+  async function searchLookup() {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => setItems(json));
+    //console.log("items", items);
+  }
+
+  searchLookup();
+
+  const calculateRelevance = (item) => {
+    const title = item.title.toLowerCase();
+    const query = searchQuery.toLowerCase();
+
+    // If the title starts with the query, give it higher relevance
+    if (title.startsWith(query)) {
+      return 2;
+    }
+    // If the title contains the query anywhere, give it medium relevance
+    else if (title.includes(query)) {
+      return 1;
+    } else {
+      // Otherwise, give it lower relevance
+      return 0;
+    }
+  };
 
   function increaseQuantity(index) {
     const newQuantity = quantity[index] + 1;
@@ -97,6 +130,11 @@ export default function Header() {
     setTotalCost(total);
   }
 
+  const handleSearch = (event) => {
+    event.preventDefault();
+    history.push(`/search/${encodeURIComponent(searchQuery)}`);
+  };
+
   const isActive = (path) => {
     // Check if the current location matches the given path
     return location.pathname === path;
@@ -121,6 +159,10 @@ export default function Header() {
         increaseQuantity,
         decreaseQuantity,
         removeItem,
+        setSearchQuery,
+        setItems,
+        items,
+        searchQuery,
         totalCost,
         itemsInCart,
         quantity,
@@ -138,23 +180,8 @@ export default function Header() {
               )}
             </div>
 
-            <div id="search-container">
-              <form className="searchbard-form" action="input">
-                <input
-                  type="text"
-                  name="search"
-                  id="searchbar"
-                  placeholder={`Search`}
-                />
-              </form>
+            <Search />
 
-              <img
-                id="search-icon"
-                src={search}
-                alt="search"
-                style={{ height: "100%" }}
-              />
-            </div>
             <div className="cart-icon-container">
               {renderLink(
                 "/cart",
