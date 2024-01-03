@@ -95,7 +95,7 @@ const GetData = ({ categories, searchQuery }) => {
                 </div>
 
                 <h4 className="item-title">{item.title}</h4>
-                <h5 className="item-price">${item.price}</h5>
+                <h5 className="item-price">${item.price.toFixed(2)}</h5>
               </Link>
             </div>
           ))}

@@ -30,7 +30,7 @@ export default function Cart() {
               />
             </div>
             <p className="item-title">{item.title}</p>
-            <p>${item.price}</p>
+            <p>${item.price.toFixed(2)}</p>
             <div className="button-container">
               <div className="quantity-container">
                 <button onClick={() => decreaseQuantity(index)}>-</button>
@@ -41,7 +41,7 @@ export default function Cart() {
             </div>
           </div>
         ))}
-        <p>Total Cost: ${totalCost}</p>
+        <p>Total Cost: ${totalCost.toFixed(2)}</p>
       </div>
     </div>
   );
