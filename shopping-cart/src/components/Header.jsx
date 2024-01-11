@@ -7,6 +7,9 @@ import logo from "../assets/Retail-Junction-logos_black.png";
 import arrowImg from "../assets/arrow.svg";
 import { Outlet } from "react-router-dom";
 import Search from "./Search";
+import menu from "../assets/menu.svg";
+import Tabs from "./Tabs";
+import TabsMobile from "./TabsMobile";
 
 export const CartContext = React.createContext();
 
@@ -18,8 +21,12 @@ export default function Header() {
   const [quantity, setQuantity] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
+    searchLookup();
     getTotalCost();
     getNumItemsInCart();
     if (itemsInCart.length === 0) {
@@ -32,13 +39,18 @@ export default function Header() {
   }, [searchQuery]);
 
   async function searchLookup() {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setItems(json));
-    //console.log("items", items);
+    try {
+      fetch("https://fakestoreapi.com/products")
+        .then((res) => res.json())
+        .then((json) => setItems(json));
+      //console.log("items", items);
+    } catch (error) {
+      setError(error);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
-
-  searchLookup();
 
   const calculateRelevance = (item) => {
     const title = item.title.toLowerCase();
@@ -140,6 +152,23 @@ export default function Header() {
     return location.pathname === path;
   };
 
+  const toggleMenuClick = () => {
+    console.log("before toggle: ", showMenu);
+    setShowMenu((prevShowMenu) => !prevShowMenu);
+    console.log("menu clicked: ", showMenu);
+    document.body.classList.toggle("active");
+  };
+
+  useEffect(() => {
+    /*
+    console.log("after toggle: ", showMenu);
+    if (showMenu) {
+      document.body.classList.add("menu-open");
+    } else {
+      document.body.classList.remove("menu-open");
+    } */
+  }, [showMenu]);
+
   const renderLink = (to, label, id) => (
     <Link
       to={to}
@@ -172,7 +201,17 @@ export default function Header() {
       <>
         <div id="header">
           <div className="logo-cart-container">
-            <div className="logo-header-contianer">
+            <div className="menu-container">
+              <div className="menu-icon-container">
+                <img
+                  className="menu-icon"
+                  src={menu}
+                  alt="menu"
+                  onClick={toggleMenuClick}
+                />
+              </div>
+            </div>
+            <div className="logo-header-container">
               {renderLink(
                 "/",
                 <img id="logo-header" src={logo} alt="logo" />,
@@ -193,31 +232,16 @@ export default function Header() {
                 className={`${itemsInCart.length > 0 ? "items-cart" : "hide"}`}
               >
                 {numItemsInCart}
-                {/*{itemsInCart.map((item, index) => (
-                  <div key={index}>
-                    
-                    <p>{item.title}</p>
-                    
-                  </div>
-                ))}*/}
               </div>
             </div>
           </div>
 
+          {/*
           <div className="tabs">
             <div id="tab-container">
               {renderLink("/shop-all", "Shop All", "Explore all products")}
               {renderLink("/mens-clothing", "Men", "Explore all products")}
-              {/*<a className="main-tab tab" href="shop-all">
-            Shop Allv
-          </a>
-          <a
-            className="main-tab tab"
-            data-section="men's clothing"
-            href="mens-clothing"
-          >
-            Men
-          </a>*/}
+
               <div
                 className="women-container"
                 onMouseEnter={() => setWomenDropdownVisibility(true)}
@@ -228,33 +252,36 @@ export default function Header() {
                   <img className="arrow-img" src={arrowImg} alt="arrow" />
                 </div>
 
-                {/*
-            <a href="women" className="women-tab tab">
-              Women{" "}
-              <img
-                className="arrow-img"
-                src="src/assets/arrow.svg"
-                alt="arrow"
-              />
-            </a>
-        */}
-                {/*} {isWomenDropdownVisible && (*/}
                 <div className="dropdown-container">
                   {renderLink("/women/womens-clothing", "Women Clothing")}
                   {renderLink("/women/jewelery", "Jewelery")}
-
-                  {/*<a className="dropdown tab" href="/women/womens-clothing">
-                Women's Clothing
-              </a>
-              <a className="dropdown tab" href="/jewelery">
-                Jewelry
-              </a>/*]*/}
                 </div>
-                {/*)}*/}
               </div>
               {renderLink("/electronics", "Electronics")}
             </div>
           </div>
+  */}
+
+          {window.innerWidth <= 768 && (
+            <TabsMobile
+              key={showMenu}
+              id="phone-tabs"
+              renderLink={renderLink}
+              setWomenDropdownVisibility={setWomenDropdownVisibility}
+              isWomenDropdownVisible={isWomenDropdownVisible}
+              showMenu={showMenu}
+              toggleMenuClick={toggleMenuClick}
+            />
+          )}
+
+          {window.innerWidth > 768 && (
+            <Tabs
+              id="laptop-tabs"
+              renderLink={renderLink}
+              isWomenDropdownVisible={isWomenDropdownVisible}
+              setWomenDropdownVisibility={setWomenDropdownVisibility}
+            />
+          )}
         </div>
         <Outlet className="header-outlet" addItemToCart={addItemToCart} />
       </>

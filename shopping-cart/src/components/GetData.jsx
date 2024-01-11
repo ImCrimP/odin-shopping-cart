@@ -36,6 +36,7 @@ const useDataFetching = (apiEndpoints) => {
         setData(combinedData);
       } catch (error) {
         setError(error);
+        console.log(error);
       } finally {
         setLoading(false);
       }
