@@ -6,6 +6,7 @@ export default function TabsMobile({
   isWomenDropdownVisible,
   showMenu,
   toggleMenuClick,
+  setShowMenu,
 }) {
   return (
     <>
@@ -16,7 +17,7 @@ export default function TabsMobile({
           <div id="x-tab" onClick={toggleMenuClick}>
             X
           </div>
-          <Search />
+          <Search toggleMenuClick={toggleMenuClick} />
           <div id="tab-container-mobile">
             <div className="menu-tab" onClick={toggleMenuClick}>
               {renderLink("/shop-all", "Shop All")}

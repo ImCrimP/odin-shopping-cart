@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import search from "/src/assets/search.svg";
 import { Link } from "react-router-dom";
 import "/src/App.scss";
-export default function Search() {
+export default function Search({ toggleMenuClick }) {
   const { searchQuery, setSearchQuery, setItems, items } =
     React.useContext(CartContext);
 
@@ -71,6 +71,7 @@ export default function Search() {
               <Link
                 className="list-item-link"
                 to={`/shop/${encodeURIComponent(item.title)}`}
+                onClick={toggleMenuClick}
               >
                 <img className="search-img" src={item.image} alt={item.title} />
                 <p className="list-item-text">{item.title}</p>

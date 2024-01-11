@@ -271,6 +271,7 @@ export default function Header() {
               isWomenDropdownVisible={isWomenDropdownVisible}
               showMenu={showMenu}
               toggleMenuClick={toggleMenuClick}
+              setShowMenu={setShowMenu}
             />
           )}
 
