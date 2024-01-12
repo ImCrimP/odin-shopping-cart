@@ -40,13 +40,17 @@ const ItemPage = () => {
   return (
     <div className="item-page-container">
       <img className="item-image-page" src={item.image} alt={item.title} />
-      <div className="item-text-container">
+      <div
+        className={`item-text-container
+      ${window.innerWidth <= 768 ? `item-text-container-mobile` : ""}`}
+      >
         <h2 className="item-title">{item.title}</h2>
         <div className="item-quantity">
           <button onClick={() => addItemToCart(item)}>Add to Cart</button>
         </div>
 
         <p>About this item:</p>
+
         <p className="item-description">{item.description}</p>
       </div>
 

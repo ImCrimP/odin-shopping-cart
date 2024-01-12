@@ -400,7 +400,7 @@ html {
 .item-description {
   text-align: left;
 }
-@media (min-width: 787px) {
+@media (min-width: 769px) {
   .tabs {
     visibility: visible;
   }
@@ -416,7 +416,7 @@ html {
     align-items: center;
   }
 
-  .item-text-container {
+  .item-text-container-mobile {
     width: 70%;
   }
 
