@@ -1,13 +1,24 @@
 import arrowImg from "../assets/arrow.svg";
 import Search from "./Search";
+import { useState } from "react";
 export default function TabsMobile({
   renderLink,
-  setWomenDropdownVisibility,
+  setIsWomenDropdownVisible,
   isWomenDropdownVisible,
   showMenu,
   toggleMenuClick,
   setShowMenu,
+  initalOpen,
+  setInitialOpen,
+  womenHasBeenOpen,
+  setWomenHasBeenOpen,
 }) {
+  function womenOpen() {
+    setIsWomenDropdownVisible(!isWomenDropdownVisible);
+    console.log("women dropdown", isWomenDropdownVisible);
+    setWomenHasBeenOpen(true);
+    console.log("women open", womenHasBeenOpen);
+  }
   return (
     <>
       <div
@@ -29,30 +40,45 @@ export default function TabsMobile({
 
             <div
               className={`women-container-menu ${
-                isWomenDropdownVisible ? "visible" : ""
+                isWomenDropdownVisible ? "visible" : "slide-up"
               }`}
-              onClick={() =>
-                setWomenDropdownVisibility(!isWomenDropdownVisible)
-              }
+              onClick={() => womenOpen()}
             >
               <div id="women-tab" className="menu-tab">
                 <div>Women</div>
                 <img className="arrow-img" src={arrowImg} alt="arrow" />
               </div>
 
-              <div className="dropdown-mobile">
+              <div
+                className={`dropdown-mobile ${
+                  isWomenDropdownVisible && !initalOpen ? "women-visible" : ""
+                } ${!isWomenDropdownVisible ? "women-hidden" : ""}`}
+              >
                 <div onClick={toggleMenuClick}>
-                  {renderLink("/women", "All Women")}
+                  {renderLink("/women", "All Women", "women-link")}
                 </div>
                 <div onClick={toggleMenuClick}>
-                  {renderLink("/women/womens-clothing", "Women Clothing")}
+                  {renderLink(
+                    "/women/womens-clothing",
+                    "Women Clothing",
+                    "women-link"
+                  )}
                 </div>
                 <div onClick={toggleMenuClick}>
-                  {renderLink("/women/jewelery", "Jewelery")}
+                  {renderLink("/women/jewelery", "Jewelery", "women-link")}
                 </div>
               </div>
             </div>
-            <div className="menu-tab" onClick={toggleMenuClick}>
+            <div
+              className={`menu-tab electronics-tab ${
+                isWomenDropdownVisible ? "electronics-down" : ""
+              } ${
+                !isWomenDropdownVisible && womenHasBeenOpen
+                  ? "electronics-up"
+                  : ""
+              }`}
+              onClick={toggleMenuClick}
+            >
               {renderLink("/electronics", "Electronics")}
             </div>
           </div>

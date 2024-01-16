@@ -2,7 +2,7 @@ import arrowImg from "../assets/arrow.svg";
 export default function Tabs({
   renderLink,
   isWomenDropdownVisible,
-  setWomenDropdownVisibility,
+  setIsWomenDropdownVisible,
 }) {
   return (
     <>
@@ -15,9 +15,9 @@ export default function Tabs({
             className={`women-container ${
               isWomenDropdownVisible ? "visible" : ""
             }`}
-            onMouseEnter={() => setWomenDropdownVisibility(true)}
-            onMouseLeave={() => setWomenDropdownVisibility(false)}
-            onClick={() => setWomenDropdownVisibility(!isWomenDropdownVisible)}
+            onMouseEnter={() => setIsWomenDropdownVisible(true)}
+            onMouseLeave={() => setIsWomenDropdownVisible(false)}
+            onClick={() => setIsWomenDropdownVisible(!isWomenDropdownVisible)}
           >
             <div id="women-tab">
               Women

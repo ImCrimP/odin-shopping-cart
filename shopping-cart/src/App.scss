@@ -203,23 +203,36 @@ a {
 .items-container {
   width: 80%;
   justify-content: center;
-  display: flex;
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+  /*display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 15px;
+  flex-flow: row wrap;
+  gap: 15px;*/
+
   padding: 10px;
 }
+
+/*
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}*/
 
 .item {
   display: flex;
   flex-direction: column;
-  flex: 1; /* flex-grow: 1, flex-shrink: 0, flex-basis: auto */
-  width: 200px; /* Adjust the width based on your needs */
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
 
   border: 1px solid;
   border-radius: 15px;
   padding: 5px;
-  margin: 5px; /* Optional margin for spacing */
+  margin: 5px;
   justify-content: space-between;
   transition: transform 0.3s ease;
 
@@ -303,7 +316,13 @@ a {
   }
 }
 
-#cart {
+.cart {
+  &:hover {
+    border-bottom: none;
+  }
+}
+
+.home {
   &:hover {
     border-bottom: none;
   }
@@ -400,6 +419,13 @@ html {
 .item-description {
   text-align: left;
 }
+
+#women-tab {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 @media (min-width: 769px) {
   .tabs {
     visibility: visible;
@@ -500,8 +526,8 @@ html {
     width: 100%;
     text-align: left;
   }
-  #cart {
-    padding: 20px;
+  .cart {
+    padding: 10px;
   }
   #laptop-tabs {
     display: none;
@@ -557,11 +583,23 @@ html {
     padding-top: 10px;
   }
 
+  #women-tab {
+    z-index: 10;
+  }
+
   .dropdown-mobile {
-    display: none;
+  }
+
+  .women-hidden {
+    left: 100%;
+  }
+
+  .women-link {
+    left: 100%;
   }
 
   .women-container-menu {
+    overflow: hidden;
     &.visible .dropdown-mobile {
       width: calc(100% - 20px);
       display: flex;
@@ -571,10 +609,32 @@ html {
       padding: 10px;
       gap: 15px;
       color: rgb(19, 19, 19);
+      &.women-visible {
+        animation: 0.4s women-slide-down 1 ease-in-out;
+      }
     }
+    &.slide-up .dropdown-mobile {
+      &.women-hidden {
+        animation: 0.4s women-slide-up 1 ease-in-out;
+        display: none;
+      }
+    }
+
     &.visible .arrow-img {
       transform: rotate(180deg);
     }
+  }
+
+  .electronics-tab {
+  }
+
+  .electronics-down {
+    animation: electronics-slide-down 0.4s ease-in-out;
+    animation-delay: 2ms;
+  }
+
+  .electronics-up {
+    animation: electronics-slide-up 0.4s ease-in-out;
   }
 
   #tab-container-mobile {
@@ -598,6 +658,9 @@ html {
   }
   .tab {
     width: 100%;
+    &:hover {
+      border-bottom: none;
+    }
   }
 }
 
@@ -616,6 +679,68 @@ html {
   }
   100% {
     left: 0;
+  }
+}
+
+@keyframes women-slide-down {
+  from {
+    transform: translateY(-100%);
+    display: none;
+  }
+  to {
+    transform: translateY(0);
+    display: flex;
+  }
+}
+
+@keyframes women-slide-up {
+  0% {
+    transform: translateY(0);
+    display: flex;
+    flex-direction: column;
+
+    width: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+    gap: 15px;
+    color: rgb(19, 19, 19);
+  }
+
+  100% {
+    transform: translateY(-100%);
+    display: flex;
+    flex-direction: column;
+
+    width: calc(100% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+    gap: 15px;
+    color: rgb(19, 19, 19);
+    display: none;
+  }
+}
+
+@keyframes electronics-slide-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-105.5px);
+  }
+}
+
+@keyframes electronics-slide-down {
+  0% {
+    transform: translateY(-105.5px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 

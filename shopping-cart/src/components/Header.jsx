@@ -24,6 +24,8 @@ export default function Header() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
+  const [initialOpen, setInitialOpen] = useState(false);
+  const [womenHasBeenOpen, setWomenHasBeenOpen] = useState(false);
 
   useEffect(() => {
     searchLookup();
@@ -157,6 +159,9 @@ export default function Header() {
     setShowMenu((prevShowMenu) => !prevShowMenu);
     console.log("menu clicked: ", showMenu);
     document.body.classList.toggle("active");
+    setInitialOpen(!initialOpen);
+    setWomenHasBeenOpen(false);
+    setIsWomenDropdownVisible(false);
   };
 
   useEffect(() => {
@@ -169,18 +174,17 @@ export default function Header() {
     } */
   }, [showMenu]);
 
-  const renderLink = (to, label, id) => (
+  const renderLink = (to, label, cN) => (
     <Link
       to={to}
-      id={id}
-      className={`main-tab tab ${isActive(to) ? "active" : ""}`}
+      className={`main-tab tab ${cN} ${isActive(to) ? "active" : ""}`}
     >
       {label}
     </Link>
   );
 
   //Make div containers that can handle onClick events ?
-  const [isWomenDropdownVisible, setWomenDropdownVisibility] = useState(false);
+  const [isWomenDropdownVisible, setIsWomenDropdownVisible] = useState(false);
   return (
     <CartContext.Provider
       value={{
@@ -224,7 +228,7 @@ export default function Header() {
             <div className="cart-icon-container">
               {renderLink(
                 "/cart",
-                <img className="cart" src={shoppingcart} alt="cart" />,
+                <img src={shoppingcart} alt="cart" />,
                 "cart"
               )}
 
@@ -244,8 +248,8 @@ export default function Header() {
 
               <div
                 className="women-container"
-                onMouseEnter={() => setWomenDropdownVisibility(true)}
-                onMouseLeave={() => setWomenDropdownVisibility(false)}
+                onMouseEnter={() => setIsWomenDropdownVisible(true)}
+                onMouseLeave={() => setIsWomenDropdownVisible(false)}
               >
                 <div id="women-tab">
                   {renderLink("/women", "Women")}
@@ -267,11 +271,15 @@ export default function Header() {
               key={showMenu}
               id="phone-tabs"
               renderLink={renderLink}
-              setWomenDropdownVisibility={setWomenDropdownVisibility}
+              setIsWomenDropdownVisible={setIsWomenDropdownVisible}
               isWomenDropdownVisible={isWomenDropdownVisible}
               showMenu={showMenu}
               toggleMenuClick={toggleMenuClick}
               setShowMenu={setShowMenu}
+              initialOpen={initialOpen}
+              setInitialOpen={setInitialOpen}
+              womenHasBeenOpen={womenHasBeenOpen}
+              setWomenHasBeenOpen={setWomenHasBeenOpen}
             />
           )}
 
@@ -280,7 +288,7 @@ export default function Header() {
               id="laptop-tabs"
               renderLink={renderLink}
               isWomenDropdownVisible={isWomenDropdownVisible}
-              setWomenDropdownVisibility={setWomenDropdownVisibility}
+              setIsWomenDropdownVisible={setIsWomenDropdownVisible}
             />
           )}
         </div>

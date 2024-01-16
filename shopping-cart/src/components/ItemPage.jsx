@@ -41,8 +41,12 @@ const ItemPage = () => {
     <div className="item-page-container">
       <img className="item-image-page" src={item.image} alt={item.title} />
       <div
-        className={`item-text-container
-      ${window.innerWidth <= 768 ? `item-text-container-mobile` : ""}`}
+        className={`
+      ${
+        window.innerWidth <= 768
+          ? `item-text-container-mobile`
+          : "item-text-container"
+      }`}
       >
         <h2 className="item-title">{item.title}</h2>
         <div className="item-quantity">
