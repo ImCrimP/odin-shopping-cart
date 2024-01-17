@@ -245,8 +245,14 @@ a {
     }
   }
 }
-
-.item-price {
+.item-info {
+  display: flex;
+  flex-direction: column;
+}
+.item-info > .item-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .item-image-container {

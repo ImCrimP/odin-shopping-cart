@@ -52,6 +52,9 @@ const ItemPage = () => {
         <div className="item-quantity">
           <button onClick={() => addItemToCart(item)}>Add to Cart</button>
         </div>
+        <div className={`item-added ${item ? "show" : ""}`}>
+          Item added to cart
+        </div>
 
         <p>About this item:</p>
 
