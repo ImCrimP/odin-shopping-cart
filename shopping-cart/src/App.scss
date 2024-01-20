@@ -323,8 +323,10 @@ a {
 }
 
 .cart {
+  height: fit-content;
   &:hover {
     border-bottom: none;
+    cursor: pointer;
   }
 }
 
@@ -432,6 +434,86 @@ html {
   }
 }
 
+.about {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid lightgray;
+  font-size: 20px;
+}
+
+.add-to-cart {
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: var(--secondarycolor);
+  border: 1px solid black;
+  padding: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.price-span {
+  margin-bottom: 20px;
+}
+
+.item-quantity {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+#qty {
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.mobile-menu-container {
+  display: none;
+}
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondarycolor);
+  padding: 25px;
+}
+.home-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 300px;
+  column-gap: 12%;
+}
+.home-img-text {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid;
+  transition: transform 0.3s ease-in-out;
+  background-color: var(--primarycolor);
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+  }
+}
+
+.home-img-container {
+}
+
+.home-image {
+  width: 45%;
+  max-height: 360px;
+  text-align: center;
+  padding: 20px;
+  object-fit: contain;
+}
+
 @media (min-width: 769px) {
   .tabs {
     visibility: visible;
@@ -442,6 +524,27 @@ html {
 }
 
 @media (max-width: 768px) {
+  .home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondarycolor);
+    padding: 10px;
+    height: auto;
+  }
+  .home-container {
+    display: flex;
+    gap: 15px;
+  }
+  .home-image {
+    max-height: 200px;
+    object-fit: contain;
+  }
+
+  .home-img-text {
+    max-height: 200px;
+  }
+
   .item-page-container {
     display: flex;
     flex-direction: column;
@@ -513,7 +616,7 @@ html {
     display: none;
   }
 
-  #home {
+  .home {
     height: 100%; /* Set the height to cover the entire parent */
     display: block; /* Use block display to cover the entire width */
     display: flex;
@@ -534,6 +637,7 @@ html {
   }
   .cart {
     padding: 10px;
+    height: fit-content;
   }
   #laptop-tabs {
     display: none;
@@ -559,6 +663,7 @@ html {
   }
 
   .mobile-menu-container {
+    display: block;
     position: relative;
     &.active .tabs-mobile {
       animation: 0.4s menu-slide-in 1;

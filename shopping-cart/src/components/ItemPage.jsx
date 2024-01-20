@@ -10,6 +10,12 @@ const ItemPage = () => {
 
   const [item, setItem] = useState(null);
 
+  /*
+  const qty = document.getElementById("qty");
+  let quantity = qty.value;
+  console.log("qty:", quantity);
+  */
+
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
@@ -49,14 +55,34 @@ const ItemPage = () => {
       }`}
       >
         <h2 className="item-title">{item.title}</h2>
+        <span className="price-span">${item.price.toFixed(2)}</span>
         <div className="item-quantity">
-          <button onClick={() => addItemToCart(item)}>Add to Cart</button>
-        </div>
-        <div className={`item-added ${item ? "show" : ""}`}>
-          Item added to cart
+          <select id="qty">
+            <option value="1">Quantity: 1</option>
+            <option value="2">Quantity: 2</option>
+            <option value="3">Quantity: 3</option>
+            <option value="4">Quantity: 4</option>
+            <option value="5">Quantity: 5</option>
+            <option value="6">Quantity: 6</option>
+            <option value="7">Quantity: 7</option>
+            <option value="8">Quantity: 8</option>
+            <option value="9">Quantity: 9</option>
+            <option value="10">Quantity: 10</option>
+          </select>
+          <button
+            className="add-to-cart"
+            onClick={() => {
+              const qty = document.getElementById("qty");
+              const quantity = qty.value;
+              console.log("qty:", quantity);
+              addItemToCart(item, quantity);
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
 
-        <p>About this item:</p>
+        <p className="about">About this item:</p>
 
         <p className="item-description">{item.description}</p>
       </div>

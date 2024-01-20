@@ -79,7 +79,6 @@ const GetData = ({ categories, searchQuery }) => {
     return <p>Error: {error.message}</p>;
   }
 
-  // Use 'data' in your component as needed
   return (
     <div>
       <div className="grid-container">

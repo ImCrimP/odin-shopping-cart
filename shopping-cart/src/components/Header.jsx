@@ -110,7 +110,8 @@ export default function Header() {
     setNumItemsInCart(total);
   }
 
-  function addItemToCart(item) {
+  /*
+  function addItemToCart(item, qty) {
     if (itemsInCart.includes(item)) {
       const index = itemsInCart.indexOf(item);
       const newQuantity = quantity[index] + 1;
@@ -125,6 +126,33 @@ export default function Header() {
     }
 
     setNumItemsInCart(numItemsInCart + 1);
+    console.log("quantity:", quantity);
+    console.log("num items:", numItemsInCart);
+    console.log("itemsInCart:", itemsInCart);
+  }
+  */
+
+  function addItemToCart(item, qty) {
+    // Find the index of the item in the cart
+    const index = itemsInCart.findIndex((cartItem) => cartItem === item);
+
+    if (index !== -1) {
+      // If the item is already in the cart, update the quantity
+      const newQuantity = quantity[index] + parseInt(qty, 10); // Parse qty as an integer
+      setQuantity([
+        ...quantity.slice(0, index),
+        newQuantity,
+        ...quantity.slice(index + 1),
+      ]);
+    } else {
+      // If the item is not in the cart, add it with the specified quantity
+      setItemsInCart([...itemsInCart, item]);
+      setQuantity([...quantity, parseInt(qty, 10)]); // Parse qty as an integer
+    }
+
+    // Update the total number of items in the cart
+    setNumItemsInCart(numItemsInCart + parseInt(qty, 10)); // Parse qty as an integer
+
     console.log("quantity:", quantity);
     console.log("num items:", numItemsInCart);
     console.log("itemsInCart:", itemsInCart);

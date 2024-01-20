@@ -4,7 +4,7 @@ export default function MensClothing() {
   const categories = ["men's clothing"];
   return (
     <>
-      <h2>Mens Clothing</h2>
+      <h1>Mens Clothing</h1>
       <GetData categories={categories} />
     </>
   );
