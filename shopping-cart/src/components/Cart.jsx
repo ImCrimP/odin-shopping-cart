@@ -37,7 +37,9 @@ export default function Cart() {
                 <p>{quantity[index]}</p>
                 <button onClick={() => increaseQuantity(index)}>+</button>
               </div>
-              <button onClick={() => removeItem(index)}>Remove</button>
+              <button className="remove-item" onClick={() => removeItem(index)}>
+                Remove
+              </button>
             </div>
           </div>
         ))}
