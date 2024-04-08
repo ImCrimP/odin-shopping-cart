@@ -23,7 +23,6 @@ export default function Search({ toggleMenuClick }) {
       )
       .slice(0, 5);
 
-    //console.log("suggestions", relevantSuggestions);
     setSuggestions(relevantSuggestions);
   }, [items, searchQuery]);
 

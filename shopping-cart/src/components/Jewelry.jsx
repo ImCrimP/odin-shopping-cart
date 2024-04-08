@@ -1,9 +1,9 @@
 import GetData from "./GetData";
-export default function Jewelery() {
-  const categories = ["jewelery"];
+export default function Jewelry() {
+  const categories = ["jewelry"];
   return (
     <>
-      <h1>Jewelery</h1>
+      <h1>Jewelry</h1>
       <GetData categories={categories} />
     </>
   );
