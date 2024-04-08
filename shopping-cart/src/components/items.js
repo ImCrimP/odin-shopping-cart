@@ -27,8 +27,6 @@ export default function items(section) {
         if (filteredItems.length > 0) {
           itemsToSend.push(filteredItems);
         }
-
-        console.log(itemsToSend);
       } catch (error) {
         console.error(error);
       }

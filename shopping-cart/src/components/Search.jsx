@@ -32,10 +32,6 @@ export default function Search({ toggleMenuClick }) {
     if (suggestions.length > 0) {
       // Redirect to the first suggestion
       history.push(`/shop/${encodeURIComponent(suggestions[0].title)}`);
-    } else {
-      // Handle case when no suggestion is selected
-      // You may want to show an error message or handle this differently
-      console.log("No suggestions available");
     }
   };
 

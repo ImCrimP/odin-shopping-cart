@@ -15,9 +15,7 @@ export default function TabsMobile({
 }) {
   function womenOpen() {
     setIsWomenDropdownVisible(!isWomenDropdownVisible);
-    console.log("women dropdown", isWomenDropdownVisible);
     setWomenHasBeenOpen(true);
-    console.log("women open", womenHasBeenOpen);
   }
   return (
     <>
@@ -65,7 +63,7 @@ export default function TabsMobile({
                   )}
                 </div>
                 <div onClick={toggleMenuClick}>
-                  {renderLink("/women/jewelery", "Jewelery", "women-link")}
+                  {renderLink("/women/jewelry", "Jewelry", "women-link")}
                 </div>
               </div>
             </div>

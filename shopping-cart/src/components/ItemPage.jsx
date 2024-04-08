@@ -5,16 +5,10 @@ import { CartContext } from "./Header";
 
 const ItemPage = () => {
   const { itemTitle } = useParams();
-  console.log("itemTitle:", itemTitle);
   const { addItemToCart } = React.useContext(CartContext);
 
   const [item, setItem] = useState(null);
-
-  /*
-  const qty = document.getElementById("qty");
-  let quantity = qty.value;
-  console.log("qty:", quantity);
-  */
+  const [submitToCart, setSubmitToCart] = useState(false);
 
   useEffect(() => {
     const fetchItemDetails = async () => {
@@ -23,10 +17,8 @@ const ItemPage = () => {
           `https://fakestoreapi.com/products?title=${itemTitle}`
         );
         const itemsData = await response.json();
-        console.log("itemsData:", itemsData);
-        const foundItem = itemsData.find((item) => item.title === itemTitle);
 
-        console.log("foundItem:", foundItem);
+        const foundItem = itemsData.find((item) => item.title === itemTitle);
 
         setItem(foundItem);
       } catch (error) {
@@ -74,12 +66,15 @@ const ItemPage = () => {
             onClick={() => {
               const qty = document.getElementById("qty");
               const quantity = qty.value;
-              console.log("qty:", quantity);
               addItemToCart(item, quantity);
+              setSubmitToCart(true);
             }}
           >
             Add to Cart
           </button>
+        </div>
+        <div className="added-to-cart-container">
+          {submitToCart && <p className="added-to-cart">Item added to cart!</p>}
         </div>
 
         <p className="about">About this item:</p>

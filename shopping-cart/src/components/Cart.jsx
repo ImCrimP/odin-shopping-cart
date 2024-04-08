@@ -11,8 +11,6 @@ export default function Cart() {
     removeItem,
   } = React.useContext(CartContext);
 
-  console.log(itemsInCart.length);
-  console.log("itmes in cart", itemsInCart);
   if (itemsInCart.length === 0) {
     return <h1>Your cart is empty</h1>;
   }

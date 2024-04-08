@@ -36,16 +36,11 @@ export default function Header() {
     }
   }, [itemsInCart, quantity, totalCost]);
 
-  useEffect(() => {
-    console.log("searchQuery", searchQuery);
-  }, [searchQuery]);
-
   async function searchLookup() {
     try {
       fetch("https://fakestoreapi.com/products")
         .then((res) => res.json())
         .then((json) => setItems(json));
-      //console.log("items", items);
     } catch (error) {
       setError(error);
       console.log(error);
@@ -110,28 +105,6 @@ export default function Header() {
     setNumItemsInCart(total);
   }
 
-  /*
-  function addItemToCart(item, qty) {
-    if (itemsInCart.includes(item)) {
-      const index = itemsInCart.indexOf(item);
-      const newQuantity = quantity[index] + 1;
-      setQuantity([
-        ...quantity.slice(0, index),
-        newQuantity,
-        ...quantity.slice(index + 1),
-      ]);
-    } else {
-      setItemsInCart([...itemsInCart, item]);
-      setQuantity([...quantity, 1]);
-    }
-
-    setNumItemsInCart(numItemsInCart + 1);
-    console.log("quantity:", quantity);
-    console.log("num items:", numItemsInCart);
-    console.log("itemsInCart:", itemsInCart);
-  }
-  */
-
   function addItemToCart(item, qty) {
     // Find the index of the item in the cart
     const index = itemsInCart.findIndex((cartItem) => cartItem === item);
@@ -152,10 +125,6 @@ export default function Header() {
 
     // Update the total number of items in the cart
     setNumItemsInCart(numItemsInCart + parseInt(qty, 10)); // Parse qty as an integer
-
-    console.log("quantity:", quantity);
-    console.log("num items:", numItemsInCart);
-    console.log("itemsInCart:", itemsInCart);
   }
 
   function getTotalCost() {
@@ -165,10 +134,8 @@ export default function Header() {
     }
     for (let i = 0; i < itemsInCart.length; i++) {
       total += itemsInCart[i].price * quantity[i];
-      console.log(`total after ${i} items: ${total}`);
     }
 
-    console.log("total:", total);
     setTotalCost(total);
   }
 
@@ -183,24 +150,12 @@ export default function Header() {
   };
 
   const toggleMenuClick = () => {
-    console.log("before toggle: ", showMenu);
     setShowMenu((prevShowMenu) => !prevShowMenu);
-    console.log("menu clicked: ", showMenu);
     document.body.classList.toggle("active");
     setInitialOpen(!initialOpen);
     setWomenHasBeenOpen(false);
     setIsWomenDropdownVisible(false);
   };
-
-  useEffect(() => {
-    /*
-    console.log("after toggle: ", showMenu);
-    if (showMenu) {
-      document.body.classList.add("menu-open");
-    } else {
-      document.body.classList.remove("menu-open");
-    } */
-  }, [showMenu]);
 
   const renderLink = (to, label, cN) => (
     <Link
@@ -267,32 +222,6 @@ export default function Header() {
               </div>
             </div>
           </div>
-
-          {/*
-          <div className="tabs">
-            <div id="tab-container">
-              {renderLink("/shop-all", "Shop All", "Explore all products")}
-              {renderLink("/mens-clothing", "Men", "Explore all products")}
-
-              <div
-                className="women-container"
-                onMouseEnter={() => setIsWomenDropdownVisible(true)}
-                onMouseLeave={() => setIsWomenDropdownVisible(false)}
-              >
-                <div id="women-tab">
-                  {renderLink("/women", "Women")}
-                  <img className="arrow-img" src={arrowImg} alt="arrow" />
-                </div>
-
-                <div className="dropdown-container">
-                  {renderLink("/women/womens-clothing", "Women Clothing")}
-                  {renderLink("/women/jewelery", "Jewelery")}
-                </div>
-              </div>
-              {renderLink("/electronics", "Electronics")}
-            </div>
-          </div>
-  */}
 
           {window.innerWidth <= 768 && (
             <TabsMobile

@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import ShopAll from "./components/ShopAll.jsx";
 import WomensClothing from "./components/WomensClothing.jsx";
 import WomenAll from "./components/WomenAll.jsx";
-import Jewelery from "./components/Jewelery.jsx";
+import Jewelry from "./components/Jewelry.jsx";
 import Electronics from "./components/Electronics.jsx";
 import "./index.css";
 import MensClothing from "./components/MensClothing.jsx";
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/women/jewelery",
-        element: <Jewelery />,
+        path: "/women/jewelry",
+        element: <Jewelry />,
       },
       {
         path: "/electronics",

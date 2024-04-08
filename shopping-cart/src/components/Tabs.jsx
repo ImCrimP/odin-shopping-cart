@@ -27,7 +27,7 @@ export default function Tabs({
             <div className="dropdown-container">
               {renderLink("/women", "All Women")}
               {renderLink("/women/womens-clothing", "Women Clothing")}
-              {renderLink("/women/jewelery", "Jewelery")}
+              {renderLink("/women/jewelry", "Jewelry")}
             </div>
           </div>
           {renderLink("/electronics", "Electronics")}
